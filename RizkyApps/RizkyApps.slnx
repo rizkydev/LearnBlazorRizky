@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="RizkyApps.API/RizkyApps.API.csproj" />
+  <Project Path="RizkyApps.Shared/RizkyApps.Shared.csproj" />
+</Solution>
