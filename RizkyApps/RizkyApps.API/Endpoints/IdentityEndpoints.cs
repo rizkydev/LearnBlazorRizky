@@ -10,12 +10,12 @@ namespace RizkyApps.API.Endpoints
         public static void RegisterIdentityEndpoints(this WebApplication app)
         {
             var IdentityGroup = app.MapGroup("/api/identity")
-                .WithTags("Exam");
+                .WithTags("Identity");
 
-            IdentityGroup.MapPost("/login", (LoginRequest request, IdentityService identityService) =>
+            IdentityGroup.MapPost("/login", async (LoginRequest request, IdentityService identityService, IUserService userService) =>
             {
-                // Validate user (simplified example)
-                if (request.Username == "admin" && request.Password == "Password123!")
+                var userDat = await userService.GetUserAsync(request);
+                if (userDat is not null)
                 {
                     var token = identityService.GenerateToken(request.Username, ["admin"]);
                     return Results.Ok(new { access_token = token });

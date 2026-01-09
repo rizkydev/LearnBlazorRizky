@@ -79,6 +79,7 @@ builder.Services.AddAuthorization();
 builder.Services.AddScoped<IdentityService>();
 
 builder.Services.AddScoped<IExamService, ExamService>();
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddOpenApi(options =>
 {
@@ -107,6 +108,7 @@ app.UseHttpsRedirection();
 // Register endpoint groups
 app.RegisterExamEndpoints();
 app.RegisterIdentityEndpoints();
+app.RegisterUserEndpoints();
 
 app.UseExceptionHandler(exceptionHandlerApp =>
 {
